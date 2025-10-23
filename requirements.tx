@@ -1,0 +1,12 @@
+streamlit
+pandas
+requests
+numpy
+
+**Final folder have:**
+
+samarth_project/
+├── final_fetcher.py
+├── knowledge_base.json
+├── final_app.py
+└── requirements.txt

@@ -1,0 +1,307 @@
+{
+  "agriculture": [
+    {
+      "state": "Andhra Pradesh",
+      "district": "East Godavari",
+      "market": "Ravulapelem",
+      "commodity": "Banana",
+      "variety": "Bhushavali(Pacha)",
+      "grade": "Large",
+      "arrival_date": "23/10/2025",
+      "min_price": "1500",
+      "max_price": "2600",
+      "modal_price": "2400"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "district": "Krishna",
+      "market": "Tiruvuru",
+      "commodity": "Paddy(Dhan)(Common)",
+      "variety": "Sona",
+      "grade": "FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "2400",
+      "max_price": "2750",
+      "modal_price": "2600"
+    },
+    {
+      "state": "Bihar",
+      "district": "Bhojpur",
+      "market": "Piro",
+      "commodity": "Potato",
+      "variety": "Jyoti",
+      "grade": "FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "1600",
+      "max_price": "1630",
+      "modal_price": "1620"
+    },
+    {
+      "state": "Chandigarh",
+      "district": "Chandigarh",
+      "market": "Chandigarh(Grain/Fruit)",
+      "commodity": "Cauliflower",
+      "variety": "Cauliflower",
+      "grade": "FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "4000",
+      "max_price": "6000",
+      "modal_price": "5000"
+    },
+    {
+      "state": "Chandigarh",
+      "district": "Chandigarh",
+      "market": "Chandigarh(Grain/Fruit)",
+      "commodity": "Ginger(Green)",
+      "variety": "Other",
+      "grade": "FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "3000",
+      "max_price": "4500",
+      "modal_price": "4000"
+    },
+    {
+      "state": "Chandigarh",
+      "district": "Chandigarh",
+      "market": "Chandigarh(Grain/Fruit)",
+      "commodity": "Peas Wet",
+      "variety": "Other",
+      "grade": "FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "10000",
+      "max_price": "14000",
+      "modal_price": "12000"
+    },
+    {
+      "state": "Chandigarh",
+      "district": "Chandigarh",
+      "market": "Chandigarh(Grain/Fruit)",
+      "commodity": "Tomato",
+      "variety": "Other",
+      "grade": "FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "800",
+      "max_price": "2000",
+      "modal_price": "1600"
+    },
+    {
+      "state": "Chattisgarh",
+      "district": "Koria",
+      "market": "Baikunthpur",
+      "commodity": "Paddy(Dhan)(Common)",
+      "variety": "I.R.-64",
+      "grade": "FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "2330",
+      "max_price": "2330",
+      "modal_price": "2330"
+    },
+    {
+      "state": "Chattisgarh",
+      "district": "Rajnandgaon",
+      "market": "Kheragarh",
+      "commodity": "Soyabean",
+      "variety": "Soyabeen",
+      "grade": "Non-FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "3500",
+      "max_price": "3700",
+      "modal_price": "3600"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Chhota Udaipur",
+      "market": "Bodeliu",
+      "commodity": "Cotton",
+      "variety": "Shanker 6 (B) 30mm FIne",
+      "grade": "FAQ",
+      "arrival_date": "23/10/2025",
+      "min_price": "7100",
+      "max_price": "7200",
+      "modal_price": "7150"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Dindigul",
+      "market": "Vedasanthur(Uzhavar Sandhai )",
+      "commodity": "Banana - Green",
+      "variety": "Banana - Green",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "2400",
+      "max_price": "2500",
+      "modal_price": "2500"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Dindigul",
+      "market": "Vedasanthur(Uzhavar Sandhai )",
+      "commodity": "Green Chilli",
+      "variety": "Green Chilly",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "5000",
+      "max_price": "6000",
+      "modal_price": "6000"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Dindigul",
+      "market": "Vedasanthur(Uzhavar Sandhai )",
+      "commodity": "Onion",
+      "variety": "Bellary",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "2400",
+      "max_price": "3000",
+      "modal_price": "3000"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "market": "Gobichettipalayam(Uzhavar Sandhai )",
+      "commodity": "Beans",
+      "variety": "Beans (Whole)",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "5000",
+      "max_price": "5500",
+      "modal_price": "5500"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "market": "Gobichettipalayam(Uzhavar Sandhai )",
+      "commodity": "Bitter gourd",
+      "variety": "Bitter Gourd",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "3800",
+      "max_price": "4200",
+      "modal_price": "4200"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "market": "Gobichettipalayam(Uzhavar Sandhai )",
+      "commodity": "Cauliflower",
+      "variety": "Ranchi",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "2500",
+      "max_price": "3000",
+      "modal_price": "3000"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "market": "Gobichettipalayam(Uzhavar Sandhai )",
+      "commodity": "Coriander(Leaves)",
+      "variety": "I Sort",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "5500",
+      "max_price": "6000",
+      "modal_price": "6000"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "market": "Gobichettipalayam(Uzhavar Sandhai )",
+      "commodity": "Potato",
+      "variety": "(Red Nanital)",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "3500",
+      "max_price": "4000",
+      "modal_price": "4000"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "market": "Gobichettipalayam(Uzhavar Sandhai )",
+      "commodity": "Raddish",
+      "variety": "Raddish",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "2500",
+      "max_price": "3000",
+      "modal_price": "3000"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "market": "Gobichettipalayam(Uzhavar Sandhai )",
+      "commodity": "Snakeguard",
+      "variety": "Snakeguard",
+      "grade": "Local",
+      "arrival_date": "23/10/2025",
+      "min_price": "3000",
+      "max_price": "3400",
+      "modal_price": "3400"
+    }
+  ],
+  "climate": [
+    {
+      "state": "Tamil Nadu",
+      "district": "Chennai",
+      "year": "2023",
+      "annual_rainfall": "1200",
+      "season": "SW Monsoon",
+      "source": "IMD"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bangalore",
+      "year": "2023",
+      "annual_rainfall": "980",
+      "season": "SW Monsoon",
+      "source": "IMD"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Pune",
+      "year": "2023",
+      "annual_rainfall": "750",
+      "season": "SW Monsoon",
+      "source": "IMD"
+    },
+    {
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "year": "2023",
+      "annual_rainfall": "650",
+      "season": "SW Monsoon",
+      "source": "IMD"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "district": "Chittor",
+      "year": "2023",
+      "annual_rainfall": "850",
+      "season": "SW Monsoon",
+      "source": "IMD"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "year": "2022",
+      "annual_rainfall": "1100",
+      "season": "SW Monsoon",
+      "source": "IMD"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Mysore",
+      "year": "2022",
+      "annual_rainfall": "920",
+      "season": "SW Monsoon",
+      "source": "IMD"
+    }
+  ],
+  "metadata": {
+    "agriculture_source": "Ministry of Agriculture - data.gov.in",
+    "climate_source": "India Meteorological Department - data.gov.in",
+    "last_updated": "2025-10-23 13:28:58"
+  }
+}
