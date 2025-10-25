@@ -37,6 +37,12 @@ class SamarthQA:
         
         return stats
     
+    def safe_numeric_conversion(self, value):
+        try:
+            return float(value)
+        except:
+            return 0.0
+    
     def analyze_query(self, query):
         q = query.lower()
         agri = self.data.get('agriculture', [])
@@ -75,15 +81,20 @@ class SamarthQA:
             return "no climate data available for comparison"
         
         df = pd.DataFrame(climate)
+        
+        # Convert rainfall to numeric safely
+        df['rainfall_numeric'] = df['annual_rainfall'].apply(self.safe_numeric_conversion)
+        
         answer = "rainfall comparison:\n\n"
         
         states = df['state'].unique()[:4]
         for state in states:
             state_data = df[df['state'] == state]
-            avg_rainfall = state_data['annual_rainfall'].mean()
-            answer += f"{state}: {avg_rainfall:.0f} mm average rainfall\n"
+            if not state_data.empty:
+                avg_rainfall = state_data['rainfall_numeric'].mean()
+                answer += f"{state}: {avg_rainfall:.0f} mm average rainfall\n"
         
-        answer += f"\nbased on {len(climate)} climate records"
+        answer += f"\nbased on {len(climate)} climate records from IMD"
         return answer
     
     def analyze_rainfall(self, query, climate):
@@ -91,10 +102,11 @@ class SamarthQA:
             return "no rainfall data available"
         
         df = pd.DataFrame(climate)
-        answer = "rainfall data:\n\n"
+        answer = "rainfall data from IMD:\n\n"
         
         for _, row in df.head(5).iterrows():
-            answer += f"{row['state']} - {row['district']} ({row['year']}): {row['annual_rainfall']} mm\n"
+            rainfall = self.safe_numeric_conversion(row['annual_rainfall'])
+            answer += f"{row['state']} - {row['district']} ({row['year']}): {rainfall:.0f} mm\n"
         
         return answer
     
@@ -115,12 +127,15 @@ class SamarthQA:
         
         if climate:
             df_climate = pd.DataFrame(climate)
-            answer += "corresponding rainfall:\n"
+            df_climate['rainfall_numeric'] = df_climate['annual_rainfall'].apply(self.safe_numeric_conversion)
+            
+            answer += "corresponding rainfall data:\n"
             for state in top_states.index[:2]:
                 if state in df_climate['state'].values:
                     rain_data = df_climate[df_climate['state'] == state]
-                    avg_rain = rain_data['annual_rainfall'].mean()
-                    answer += f"{state}: {avg_rain:.0f} mm avg rainfall\n"
+                    if not rain_data.empty:
+                        avg_rain = rain_data['rainfall_numeric'].mean()
+                        answer += f"{state}: {avg_rain:.0f} mm average rainfall\n"
         
         return answer
     
@@ -138,23 +153,37 @@ class SamarthQA:
             answer += "climate correlation:\n"
             answer += f"rainfall data for {df_climate['state'].nunique()} states\n"
             answer += f"years covered: {df_climate['year'].nunique()}\n"
+            
+            # Add rainfall range
+            df_climate['rainfall_numeric'] = df_climate['annual_rainfall'].apply(self.safe_numeric_conversion)
+            min_rain = df_climate['rainfall_numeric'].min()
+            max_rain = df_climate['rainfall_numeric'].max()
+            answer += f"rainfall range: {min_rain:.0f} mm to {max_rain:.0f} mm\n"
         
-        answer += "\ncorrelation: higher rainfall generally supports better crop yields"
+        answer += "\ncorrelation: agricultural planning should consider regional rainfall variations"
         return answer
     
     def analyze_policy_recommendation(self, query, agri, climate):
-        answer = "policy analysis based on data:\n\n"
+        answer = "policy analysis based on integrated data:\n\n"
         
-        if 'drought' in query.lower():
-            answer += "1. drought-resistant crops recommended in low-rainfall areas\n"
-            answer += "2. data shows rainfall variation: Tamil Nadu (1200mm) vs Punjab (650mm)\n"
-            answer += "3. water-intensive crops may need irrigation support\n\n"
+        if climate:
+            df_climate = pd.DataFrame(climate)
+            df_climate['rainfall_numeric'] = df_climate['annual_rainfall'].apply(self.safe_numeric_conversion)
+            
+            high_rain_states = df_climate[df_climate['rainfall_numeric'] > 1000]['state'].tolist()
+            low_rain_states = df_climate[df_climate['rainfall_numeric'] < 800]['state'].tolist()
+            
+            if high_rain_states:
+                answer += f"1. high rainfall regions ({', '.join(high_rain_states)}) - suitable for water-intensive crops\n"
+            if low_rain_states:
+                answer += f"2. low rainfall regions ({', '.join(low_rain_states)}) - recommend drought-resistant varieties\n"
         
-        answer += "data-backed recommendations:\n"
-        answer += "- promote crops based on regional rainfall patterns\n"
-        answer += "- invest in irrigation for low-rainfall regions\n"
-        answer += "- diversify crops to manage climate risks\n"
+        if agri:
+            df_agri = pd.DataFrame(agri)
+            common_crops = df_agri['commodity'].value_counts().head(5).index.tolist()
+            answer += f"3. diversify among top crops: {', '.join(common_crops)}\n\n"
         
+        answer += "data sources: ministry of agriculture + IMD climate data"
         return answer
     
     def analyze_highest_production(self, query, agri):
@@ -165,14 +194,15 @@ class SamarthQA:
         answer = "production analysis:\n\n"
         
         if 'modal_price' in df.columns:
-            df['price_num'] = pd.to_numeric(df['modal_price'], errors='coerce')
+            # Safe numeric conversion for prices
+            df['price_num'] = df['modal_price'].apply(self.safe_numeric_conversion)
             high_value = df.nlargest(3, 'price_num')
             
             answer += "high-value crops:\n"
             for _, row in high_value.iterrows():
                 answer += f"- {row['commodity']} in {row['state']}: Rs {row['modal_price']}\n"
         
-        answer += f"\nbased on {len(agri)} market records"
+        answer += f"\nbased on {len(agri)} market records from data.gov.in"
         return answer
     
     def analyze_basic_query(self, query, agri):
@@ -182,7 +212,7 @@ class SamarthQA:
         df = pd.DataFrame(agri)
         
         if 'price' in query:
-            answer = "price data:\n\n"
+            answer = "current market prices:\n\n"
             for _, row in df.head(4).iterrows():
                 answer += f"{row['commodity']} in {row['district']}, {row['state']}\n"
                 answer += f"price: Rs {row.get('modal_price', 'N/A')}\n"
@@ -191,24 +221,24 @@ class SamarthQA:
         
         if 'crop' in query or 'commodity' in query:
             crops = df['commodity'].value_counts().head(8)
-            answer = "crops available:\n\n"
+            answer = "available crops in data:\n\n"
             for crop, count in crops.items():
-                answer += f"{crop}: {count} records\n"
+                answer += f"{crop}: {count} market records\n"
             return answer
         
         if 'state' in query or 'location' in query:
             states = df['state'].value_counts().head(6)
-            answer = "states with data:\n\n"
+            answer = "states with agriculture data:\n\n"
             for state, count in states.items():
                 answer += f"{state}: {count} records\n"
             return answer
         
-        answer = f"data overview:\n\n"
+        answer = f"agriculture data overview:\n\n"
         answer += f"total records: {len(agri)}\n"
         answer += f"states: {df['state'].nunique()}\n"
         answer += f"districts: {df['district'].nunique()}\n"
         answer += f"crops: {df['commodity'].nunique()}\n\n"
-        answer += "ask about prices, crops, states, rainfall, or comparisons"
+        answer += "ask about: prices, crops, states, rainfall, or policy recommendations"
         
         return answer
 
@@ -264,7 +294,8 @@ with left_col:
                 
                 st.markdown("---")
                 st.markdown("### 📊 Analysis Result")
-                st.markdown(answer)
+                # Use st.text for better formatting of plain text
+                st.text(answer)
                 
                 st.markdown("### 📚 Data Sources")
                 for source in sources:
